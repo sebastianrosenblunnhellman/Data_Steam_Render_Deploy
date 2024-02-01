@@ -5,8 +5,8 @@ import pyarrow as pa
 
 def GenreStats(genero: str):
     # Ruta de los archivos Parquet
-    games_parquet = r'data\steam_games.parquet'
-    items_parquet = r'data\user_items.parquet'
+    games_parquet = 'data/steam_games.parquet'
+    items_parquet = 'data/user_items.parquet'
 
     # Utiliza PyArrow para leer el archivo Parquet
     tabla_games = pq.read_table(games_parquet)

@@ -18,7 +18,7 @@ async def root():
 
 # Definición de una ruta para obtener funcionn developer
 @app.get("/api/desarrollador/{desarrollador}")
-def Developer(desarrollador: str):
+async def Developer(desarrollador: str):
     return DeveloperContent(desarrollador)
 
 @app.get("/api/datos_usuario/{user_id}")

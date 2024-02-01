@@ -4,8 +4,8 @@ import pyarrow as pa
 
 def DeveloperReviews(desarrolladora: str):
     # Ruta de los archivos Parquet
-    games_parquet = r'data\steam_games.parquet'
-    reviews_parquet = r'data\user_reviews.parquet'
+    games_parquet = 'data/steam_games.parquet'
+    reviews_parquet = 'data/user_reviews.parquet'
 
     # Utiliza PyArrow para leer el archivo Parquet
     tabla_games = pq.read_table(games_parquet)
