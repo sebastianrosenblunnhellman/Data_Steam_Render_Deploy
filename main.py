@@ -2,11 +2,11 @@
 from fastapi import FastAPI
 
 # Importaciones de las funciones de enrutamiento desde diferentes módulos
-from router.DeveloperFreeContent import DeveloperFreeContent
-from router.UserDataStats import UserDataStats
-from router.UserForGenreStats import UserForGenreStats
-from router.BestDeveloperStats import BestDeveloperStats
-from router.DeveloperReviewsStats import DeveloperReviewsStats
+from router.DeveloperContent import DeveloperContent
+from router.UserInfo import UserInfo
+from router.GenreStats import GenreStats
+from router.BestDeveloper import BestDeveloper
+from router.DeveloperReviews import DeveloperReviews
 
 # Creación de una instancia de la aplicación FastAPI
 app = FastAPI()
@@ -17,23 +17,23 @@ async def root():
     return {"HOME": "HOME"}
 
 # Definición de una ruta para obtener funcionn developer
-@app.get("/api/developer/{desarrollador}")
+@app.get("/api/desarrollador/{desarrollador}")
 def Developer(desarrollador: str):
-    return DeveloperFreeContent(desarrollador)
+    return DeveloperContent(desarrollador)
 
-@app.get("/api/user_data/{user_id}")
+@app.get("/api/datos_usuario/{user_id}")
 async def User_Data(user_id: str):
-    return UserDataStats(user_id)
+    return UserInfo(user_id)
 
-@app.get("/api/user_for_genre/{genero}")
+@app.get("/api/usuario_por_genero/{genero}")
 async def User_For_Genre(genero: str):
-    return UserForGenreStats(genero)
+    return GenreStats(genero)
 
-@app.get("/api/best_developer_year/{anio}")
+@app.get("/api/mejor_desarrollador/{anio}")
 async def Best_Developer_Year(anio: int):
-    return BestDeveloperStats(anio)
+    return BestDeveloper(anio)
 
-@app.get("/api/developer_review_stats/{desarrolladora}")
+@app.get("/api/reviews_por_desarrolladora/{desarrolladora}")
 async def Developer_Reviews_Analysis(desarrolladora: str):
-    return DeveloperReviewsStats(desarrolladora)
+    return DeveloperReviews(desarrolladora)
 
