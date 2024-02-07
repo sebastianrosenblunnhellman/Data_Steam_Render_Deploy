@@ -7,6 +7,8 @@ from router.UserInfo import UserInfo
 from router.GenreStats import GenreStats
 from router.BestDeveloper import BestDeveloper
 from router.DeveloperReviews import DeveloperReviews
+from router.item_item import item_item
+from router.user_item import user_item
 
 # Creación de una instancia de la aplicación FastAPI
 app = FastAPI()
@@ -37,3 +39,10 @@ async def Best_Developer_Year(anio: int):
 async def Developer_Reviews_Analysis(desarrolladora: str):
     return DeveloperReviews(desarrolladora)
 
+@app.get("/api/recomendacion_item/{item_id}")
+async def recomendacion_juego(item_id: str):
+    return item_item(item_id)
+
+@app.get("/api/recomendacion_usuario/{user_id}")
+async def recomendacion_usuario(user_id: str):
+    return user_item(user_id)
