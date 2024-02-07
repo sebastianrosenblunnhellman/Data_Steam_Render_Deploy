@@ -1,5 +1,6 @@
 # Importacion de FastAPI
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 
 # Importaciones de las funciones de enrutamiento desde diferentes módulos
 from router.DeveloperContent import DeveloperContent
@@ -10,13 +11,48 @@ from router.DeveloperReviews import DeveloperReviews
 from router.item_item import item_item
 from router.user_item import user_item
 
-# Creación de una instancia de la aplicación FastAPI
+
 app = FastAPI()
 
-# Definición de una ruta para el punto de entrada principal
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)  # Esta ruta devuelve un HTML 
 async def root():
-    return {"HOME": "HOME"}
+    html_content = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Steam</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #5880E5, #57ACE6);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>¡Bienvenido al API de Machine Learning del Conjunto de Datos de Steam!</h1>
+        <p>Para comenzar a explorar nuestros endpoints de consulta y de machine learning, simplemente sigue este enlace: <a href="https://steam-data-project.onrender.com/docs">https://steam-data-project.onrender.com/docs</a> 🚀</p>
+        <p>¡Esperamos que disfrutes explorando los datos!</p>
+    </div>
+</body>
+</html>
+"""
+    return html_content
 
 # Definición de una ruta para obtener funcionn developer
 @app.get("/api/desarrollador/{desarrollador}")
